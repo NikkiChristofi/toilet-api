@@ -3,7 +3,7 @@ import '@babel/polyfill'
 import express from 'express'
 import bodyParser from 'body-parser'
 import cors from './lib/cors'
-
+import sampleData from './data/sampleData'
 
 const app = express()
 const router = express.Router()
@@ -17,6 +17,10 @@ app.use('/', router)
 
 router.get('/', (request, response) => {
   response.send({ uptime: process.uptime() })
+})
+
+router.get('/facilities', (request, response) => {
+  response.send({ facilities: sampleData })
 })
 
 const server = app.listen(process.env.port || process.env.PORT || 3010, () => {
